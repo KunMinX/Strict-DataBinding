@@ -43,7 +43,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.kunminx.architecture.BaseApplication;
-import com.kunminx.architecture.R;
+import com.kunminx.strictdatabinding.R;
 
 
 /**
