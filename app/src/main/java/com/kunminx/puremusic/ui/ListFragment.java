@@ -17,15 +17,14 @@
 package com.kunminx.puremusic.ui;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.library.baseAdapters.BR;
 
+import com.kunminx.architecture.ui.page.DataBindingConfig;
 import com.kunminx.puremusic.R;
-import com.kunminx.puremusic.databinding.FragmentListBinding;
 import com.kunminx.puremusic.ui.adapter.MomentAdapter;
 import com.kunminx.puremusic.ui.base.BaseFragment;
 import com.kunminx.puremusic.ui.callback.SharedViewModel;
@@ -40,25 +39,17 @@ public class ListFragment extends BaseFragment {
     private SharedViewModel mSharedViewModel;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initViewModel() {
         mListViewModel = getFragmentViewModel(ListViewModel.class);
         mSharedViewModel = getActivityViewModel(SharedViewModel.class);
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list, container, false);
-        FragmentListBinding binding = FragmentListBinding.bind(view);
-        binding.setLifecycleOwner(this);
-        binding.setVm(mListViewModel);
-        binding.setClick(new ClickProxy());
+    protected DataBindingConfig getDataBindingConfig() {
 
-        MomentAdapter adapter = new MomentAdapter(mActivity.getApplicationContext());
-        binding.setAdapter(adapter);
-
-        return view;
+        return new DataBindingConfig(R.layout.fragment_list, BR.vm, mListViewModel)
+                .addBindingParam(BR.click, new ClickProxy())
+                .addBindingParam(BR.adapter, new MomentAdapter(mActivity.getApplicationContext()));
     }
 
     @Override

@@ -20,10 +20,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.databinding.DataBindingUtil;
+import androidx.databinding.library.baseAdapters.BR;
 
+import com.kunminx.architecture.ui.page.DataBindingConfig;
 import com.kunminx.puremusic.R;
-import com.kunminx.puremusic.databinding.ActivityMainBinding;
 import com.kunminx.puremusic.ui.base.BaseActivity;
 import com.kunminx.puremusic.ui.callback.SharedViewModel;
 import com.kunminx.puremusic.ui.state.MainViewModel;
@@ -38,13 +38,20 @@ public class MainActivity extends BaseActivity {
     private SharedViewModel mSharedViewModel;
 
     @Override
+    protected void initViewModel() {
+        mMainViewModel = getActivityViewModel(MainViewModel.class);
+        mSharedViewModel = getAppViewModelProvider().get(SharedViewModel.class);
+    }
+
+    @Override
+    protected DataBindingConfig getDataBindingConfig() {
+        return new DataBindingConfig(R.layout.activity_main, BR.vm, mMainViewModel)
+                .addBindingParam(BR.click, new ClickProxy());
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mMainViewModel = getActivityViewModel(MainViewModel.class);
-        mSharedViewModel = getAppViewModelProvider(this).get(SharedViewModel.class);
-
-        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        binding.setClick(new ClickProxy());
 
         mSharedViewModel.moment.observe(this, moment -> {
             Toast.makeText(this, moment.getContent(), Toast.LENGTH_SHORT).show();

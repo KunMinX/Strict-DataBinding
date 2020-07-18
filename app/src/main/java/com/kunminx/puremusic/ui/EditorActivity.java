@@ -22,7 +22,9 @@ import android.view.MenuItem;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
+import androidx.databinding.library.baseAdapters.BR;
 
+import com.kunminx.architecture.ui.page.DataBindingConfig;
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.data.bean.Moment;
 import com.kunminx.puremusic.databinding.ActivityEditorBinding;
@@ -41,16 +43,15 @@ public class EditorActivity extends BaseActivity {
     private SharedViewModel mSharedViewModel;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initViewModel() {
         mEditorViewModel = getActivityViewModel(EditorViewModel.class);
-        mSharedViewModel = getAppViewModelProvider(this).get(SharedViewModel.class);
+        mSharedViewModel = getAppViewModelProvider().get(SharedViewModel.class);
+    }
 
-        ActivityEditorBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_editor);
-        binding.setLifecycleOwner(this);
-        binding.setVm(mEditorViewModel);
-        binding.setClick(new ClickProxy());
-
+    @Override
+    protected DataBindingConfig getDataBindingConfig() {
+        return new DataBindingConfig(R.layout.activity_editor, BR.vm, mEditorViewModel)
+                .addBindingParam(BR.click, new ClickProxy());
     }
 
     public class ClickProxy implements Toolbar.OnMenuItemClickListener {

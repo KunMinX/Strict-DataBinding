@@ -16,20 +16,15 @@
 
 package com.kunminx.puremusic.ui;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.library.baseAdapters.BR;
 
-import com.kunminx.puremusic.ui.base.BaseFragment;
+import com.kunminx.architecture.ui.page.DataBindingConfig;
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.data.bean.Moment;
-import com.kunminx.puremusic.databinding.FragmentEditorBinding;
+import com.kunminx.puremusic.ui.base.BaseFragment;
 import com.kunminx.puremusic.ui.callback.SharedViewModel;
 import com.kunminx.puremusic.ui.state.EditorViewModel;
 
@@ -44,28 +39,15 @@ public class EditorFragment extends BaseFragment {
     private SharedViewModel mSharedViewModel;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initViewModel() {
         mEditorViewModel = getFragmentViewModel(EditorViewModel.class);
         mSharedViewModel = getActivityViewModel(SharedViewModel.class);
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_editor, container, false);
-        FragmentEditorBinding binding = FragmentEditorBinding.bind(view);
-        binding.setLifecycleOwner(this);
-        binding.setVm(mEditorViewModel);
-        binding.setClick(new ClickProxy());
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
+    protected DataBindingConfig getDataBindingConfig() {
+        return new DataBindingConfig(R.layout.fragment_editor, BR.vm, mEditorViewModel)
+                .addBindingParam(BR.click, new ClickProxy());
     }
 
     public class ClickProxy implements Toolbar.OnMenuItemClickListener {
