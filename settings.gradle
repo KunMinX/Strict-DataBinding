@@ -1,0 +1,3 @@
+include ':strictdatabinding'
+include ':app'
+rootProject.name = 'PureMusic'
