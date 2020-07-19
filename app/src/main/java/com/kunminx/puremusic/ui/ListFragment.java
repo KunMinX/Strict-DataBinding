@@ -25,7 +25,7 @@ import androidx.databinding.library.baseAdapters.BR;
 
 import com.kunminx.architecture.ui.page.DataBindingConfig;
 import com.kunminx.puremusic.R;
-import com.kunminx.puremusic.ui.adapter.MomentAdapter;
+import com.kunminx.puremusic.ui.adapter.MomentAdapterData;
 import com.kunminx.puremusic.ui.base.BaseFragment;
 import com.kunminx.puremusic.ui.callback.SharedViewModel;
 import com.kunminx.puremusic.ui.state.ListViewModel;
@@ -49,7 +49,7 @@ public class ListFragment extends BaseFragment {
 
         return new DataBindingConfig(R.layout.fragment_list, BR.vm, mListViewModel)
                 .addBindingParam(BR.click, new ClickProxy())
-                .addBindingParam(BR.adapter, new MomentAdapter(mActivity.getApplicationContext()));
+                .addBindingParam(BR.adapter, new MomentAdapterData(mActivity.getApplicationContext()));
     }
 
     @Override

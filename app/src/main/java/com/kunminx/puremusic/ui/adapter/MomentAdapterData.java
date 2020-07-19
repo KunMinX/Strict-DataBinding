@@ -20,7 +20,7 @@ import android.content.Context;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.kunminx.binding_recyclerview.adapter.SimpleBindingAdapter;
+import com.kunminx.binding_recyclerview.adapter.SimpleDataBindingAdapter;
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.data.bean.Moment;
 import com.kunminx.puremusic.databinding.AdapterMomentBinding;
@@ -28,9 +28,9 @@ import com.kunminx.puremusic.databinding.AdapterMomentBinding;
 /**
  * Create by KunMinX at 2020/5/31
  */
-public class MomentAdapter extends SimpleBindingAdapter<Moment, AdapterMomentBinding> {
+public class MomentAdapterData extends SimpleDataBindingAdapter<Moment, AdapterMomentBinding> {
 
-    public MomentAdapter(Context context) {
+    public MomentAdapterData(Context context) {
         super(context, R.layout.adapter_moment, new DiffUtilCallbacks().getMomentItemCallback());
     }
 
