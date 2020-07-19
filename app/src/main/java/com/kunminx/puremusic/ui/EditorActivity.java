@@ -16,18 +16,14 @@
 
 package com.kunminx.puremusic.ui;
 
-import android.os.Bundle;
 import android.view.MenuItem;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.databinding.DataBindingUtil;
 import androidx.databinding.library.baseAdapters.BR;
 
 import com.kunminx.architecture.ui.page.DataBindingConfig;
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.data.bean.Moment;
-import com.kunminx.puremusic.databinding.ActivityEditorBinding;
 import com.kunminx.puremusic.ui.base.BaseActivity;
 import com.kunminx.puremusic.ui.callback.SharedViewModel;
 import com.kunminx.puremusic.ui.state.EditorViewModel;
