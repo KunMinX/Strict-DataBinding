@@ -1,5 +1,5 @@
 include ':binding_adapter'
 include ':binding_recyclerview'
-include ':strictdatabinding'
+include ':strict_databinding'
 include ':app'
 rootProject.name = 'PureMusic'

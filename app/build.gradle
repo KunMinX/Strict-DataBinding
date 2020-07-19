@@ -65,7 +65,7 @@ dependencies {
 
     implementation 'com.kunminx.archi:unpeek-livedata:2.9.9-beta5'
     implementation 'com.kunminx.archi:smooth-navigation:2.9.7-beta4'
-    implementation project(':strictdatabinding')
+    implementation project(':strict_databinding')
     implementation project(':binding_recyclerview')
     implementation project(':binding_adapter')
 
