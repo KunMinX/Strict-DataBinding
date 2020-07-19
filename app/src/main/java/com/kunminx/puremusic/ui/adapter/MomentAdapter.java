@@ -20,7 +20,7 @@ import android.content.Context;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.kunminx.puremusic.ui.base.adapter.SimpleBindingAdapter;
+import com.kunminx.binding_recyclerview.adapter.SimpleBindingAdapter;
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.data.bean.Moment;
 import com.kunminx.puremusic.databinding.AdapterMomentBinding;
