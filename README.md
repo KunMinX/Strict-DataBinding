@@ -29,6 +29,17 @@ implementation 'com.kunminx.archi:binding-recyclerview:3.3.2-beta3'
 >
 > 如对 Jetpack Compose 基于函数式编程思想 “解决视图调用一致性问题” 的理论基础感兴趣，可详见[《事关软件工程安全 的 数据驱动 UI 框架 扫盲干货》](https://xiaozhuanlan.com/topic/2356748910)的铺垫，此处不做累述。
 
+## 版权声明
+
+本文以 [CC 署名-非商业性使用-禁止演绎 4.0 国际协议](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh) 发行。
+
+Copyright © 2019-present KunMinX
+
+![](https://images.xiaozhuanlan.com/photo/2020/8fc6f51263babeb544bb4a7dae6cde59.jpg)
+
+ReadMe 中提到的 “对 DataBinding 用于规避视图实例 null 安全问题的理解” 等多处 **对特定现象及其本质的概括，均属于本人独立原创的成果**，本人对此享有最终解释权。
+
+任何个人或组织在转载全文，或引用本文中上述提到的 描述、举例、图例或本质概括 时，**须注明原作者和出处**。未经授权不得用于洗稿、广告包装等商业用途。
 
 ```
 Copyright 2019-present KunMinX
