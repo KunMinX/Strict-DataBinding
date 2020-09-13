@@ -18,7 +18,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 
 
-def theVersionName = "2.9.9-beta1"
+def theVersionName = "3.3.2-beta2"
 
 android {
     compileSdkVersion 29
@@ -28,7 +28,7 @@ android {
     defaultConfig {
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 2090901
+        versionCode 3030202
         versionName theVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -64,10 +64,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
 
 }
 
