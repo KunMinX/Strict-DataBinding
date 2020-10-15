@@ -17,9 +17,13 @@
 
 ```groovy
 //核心
+//DataBinding 严格模式基础框架
 implementation 'com.kunminx.archi:strict-databinding:3.3.2-beta2'
+
 //可选
+//常用 BindingAdapter 接口整理
 implementation 'com.kunminx.archi:binding-adapter:3.3.2-beta2'
+//常用 RecyclerView Binding 接口整理
 implementation 'com.kunminx.archi:binding-recyclerview:3.3.2-beta3'
 ```
 
