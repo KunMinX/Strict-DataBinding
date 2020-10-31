@@ -31,8 +31,6 @@ public class SharedViewModel extends ViewModel {
     public UnPeekLiveData<Moment> test =
             new UnPeekLiveData.Builder<Moment>()
                     .setAllowNullValue(false)
-                    .setAllowToClear(true)
-                    .setEventSurvivalTime(500)
                     .create();
 
 }

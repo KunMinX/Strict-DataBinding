@@ -35,11 +35,11 @@ import androidx.lifecycle.ViewModel;
  */
 public class DataBindingConfig {
 
-    private int layout;
+    private final int layout;
 
-    private int vmVariableId;
+    private final int vmVariableId;
 
-    private ViewModel stateViewModel;
+    private final ViewModel stateViewModel;
 
     private SparseArray bindingParams = new SparseArray();
 

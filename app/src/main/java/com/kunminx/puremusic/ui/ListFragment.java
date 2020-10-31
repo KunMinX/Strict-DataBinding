@@ -40,8 +40,8 @@ public class ListFragment extends BaseFragment {
 
     @Override
     protected void initViewModel() {
-        mListViewModel = getFragmentViewModel(ListViewModel.class);
-        mSharedViewModel = getActivityViewModel(SharedViewModel.class);
+        mListViewModel = getFragmentScopeViewModel(ListViewModel.class);
+        mSharedViewModel = getActivityScopeViewModel(SharedViewModel.class);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class ListFragment extends BaseFragment {
             mListViewModel.list.setValue(moments);
         });
 
-        mSharedViewModel.moment.observe(getViewLifecycleOwner(), moment -> {
+        mSharedViewModel.moment.observeInFragment(this, moment -> {
             mListViewModel.list.getValue().add(0, moment);
             mListViewModel.list.setValue(mListViewModel.list.getValue());
         });

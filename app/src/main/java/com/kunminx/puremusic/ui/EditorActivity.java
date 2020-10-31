@@ -40,8 +40,8 @@ public class EditorActivity extends BaseActivity {
 
     @Override
     protected void initViewModel() {
-        mEditorViewModel = getActivityViewModel(EditorViewModel.class);
-        mSharedViewModel = getAppViewModelProvider().get(SharedViewModel.class);
+        mEditorViewModel = getActivityScopeViewModel(EditorViewModel.class);
+        mSharedViewModel = getApplicationScopeViewModel(SharedViewModel.class);
     }
 
     @Override

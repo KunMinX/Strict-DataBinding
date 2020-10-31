@@ -40,8 +40,8 @@ public class EditorFragment extends BaseFragment {
 
     @Override
     protected void initViewModel() {
-        mEditorViewModel = getFragmentViewModel(EditorViewModel.class);
-        mSharedViewModel = getActivityViewModel(SharedViewModel.class);
+        mEditorViewModel = getFragmentScopeViewModel(EditorViewModel.class);
+        mSharedViewModel = getActivityScopeViewModel(SharedViewModel.class);
     }
 
     @Override

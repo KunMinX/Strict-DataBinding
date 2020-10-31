@@ -39,8 +39,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initViewModel() {
-        mMainViewModel = getActivityViewModel(MainViewModel.class);
-        mSharedViewModel = getAppViewModelProvider().get(SharedViewModel.class);
+        mMainViewModel = getActivityScopeViewModel(MainViewModel.class);
+        mSharedViewModel = getApplicationScopeViewModel(SharedViewModel.class);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mSharedViewModel.moment.observe(this, moment -> {
+        mSharedViewModel.moment.observeInActivity(this, moment -> {
             Toast.makeText(this, moment.getContent(), Toast.LENGTH_SHORT).show();
         });
     }

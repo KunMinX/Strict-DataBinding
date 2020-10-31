@@ -56,7 +56,7 @@ public abstract class DataBindingFragment extends Fragment {
     protected boolean mAnimationLoaded;
     private ViewModelProvider mFragmentProvider;
     private ViewModelProvider mActivityProvider;
-    private ViewModelProvider.Factory mFactory;
+    private ViewModelProvider mApplicationProvider;
     private ViewDataBinding mBinding;
     private TextView mTvStrictModeTip;
 
@@ -161,32 +161,32 @@ public abstract class DataBindingFragment extends Fragment {
         showShortToast(mActivity.getApplicationContext().getString(stringRes));
     }
 
-    protected <T extends ViewModel> T getFragmentViewModel(@NonNull Class<T> modelClass) {
+    protected <T extends ViewModel> T getFragmentScopeViewModel(@NonNull Class<T> modelClass) {
         if (mFragmentProvider == null) {
             mFragmentProvider = new ViewModelProvider(this);
         }
         return mFragmentProvider.get(modelClass);
     }
 
-    protected <T extends ViewModel> T getActivityViewModel(@NonNull Class<T> modelClass) {
+    protected <T extends ViewModel> T getActivityScopeViewModel(@NonNull Class<T> modelClass) {
         if (mActivityProvider == null) {
             mActivityProvider = new ViewModelProvider(mActivity);
         }
         return mActivityProvider.get(modelClass);
     }
 
-    protected ViewModelProvider getAppViewModelProvider() {
-        return new ViewModelProvider((BaseApplication) mActivity.getApplicationContext(),
-                getAppFactory(mActivity));
+    protected <T extends ViewModel> T getApplicationScopeViewModel(@NonNull Class<T> modelClass) {
+        if (mApplicationProvider == null) {
+            mApplicationProvider = new ViewModelProvider(
+                    (BaseApplication) mActivity.getApplicationContext(), getApplicationFactory(mActivity));
+        }
+        return mApplicationProvider.get(modelClass);
     }
 
-    private ViewModelProvider.Factory getAppFactory(Activity activity) {
+    private ViewModelProvider.Factory getApplicationFactory(Activity activity) {
         checkActivity(this);
         Application application = checkApplication(activity);
-        if (mFactory == null) {
-            mFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(application);
-        }
-        return mFactory;
+        return ViewModelProvider.AndroidViewModelFactory.getInstance(application);
     }
 
     private Application checkApplication(Activity activity) {
