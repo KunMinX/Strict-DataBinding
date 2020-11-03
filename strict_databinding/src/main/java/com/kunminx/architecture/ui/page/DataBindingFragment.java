@@ -51,9 +51,7 @@ import com.kunminx.strictdatabinding.R;
  */
 public abstract class DataBindingFragment extends Fragment {
 
-    private static final Handler HANDLER = new Handler();
     protected AppCompatActivity mActivity;
-    protected boolean mAnimationLoaded;
     private ViewModelProvider mFragmentProvider;
     private ViewModelProvider mActivityProvider;
     private ViewModelProvider mApplicationProvider;
@@ -121,23 +119,6 @@ public abstract class DataBindingFragment extends Fragment {
         }
         mBinding = binding;
         return binding.getRoot();
-    }
-
-    @Nullable
-    @Override
-    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
-        //TODO 错开动画转场与 UI 刷新的时机，避免掉帧卡顿的现象
-        HANDLER.postDelayed(() -> {
-            if (!mAnimationLoaded) {
-                mAnimationLoaded = true;
-                loadInitData();
-            }
-        }, 280);
-        return super.onCreateAnimation(transit, enter, nextAnim);
-    }
-
-    protected void loadInitData() {
-
     }
 
     public boolean isDebug() {
