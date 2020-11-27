@@ -20,6 +20,7 @@ package com.kunminx.architecture.ui.page;
 
 import android.util.SparseArray;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 
 /**
@@ -43,7 +44,9 @@ public class DataBindingConfig {
 
     private SparseArray bindingParams = new SparseArray();
 
-    public DataBindingConfig(int layout, int vmVariableId, ViewModel stateViewModel) {
+    public DataBindingConfig(@NonNull Integer layout,
+                             @NonNull Integer vmVariableId,
+                             @NonNull ViewModel stateViewModel) {
         this.layout = layout;
         this.vmVariableId = vmVariableId;
         this.stateViewModel = stateViewModel;
@@ -65,7 +68,8 @@ public class DataBindingConfig {
         return bindingParams;
     }
 
-    public DataBindingConfig addBindingParam(int variableId, Object object) {
+    public DataBindingConfig addBindingParam(@NonNull Integer variableId,
+                                             @NonNull Object object) {
         if (bindingParams.get(variableId) == null) {
             bindingParams.put(variableId, object);
         }
