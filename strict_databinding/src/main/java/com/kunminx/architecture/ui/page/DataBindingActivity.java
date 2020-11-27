@@ -95,4 +95,10 @@ public abstract class DataBindingActivity extends AppCompatActivity {
         return getApplicationContext().getApplicationInfo() != null &&
                 (getApplicationContext().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mBinding = null;
+    }
 }

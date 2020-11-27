@@ -118,4 +118,10 @@ public abstract class DataBindingFragment extends Fragment {
         return mActivity.getApplicationContext().getApplicationInfo() != null &&
                 (mActivity.getApplicationContext().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mBinding = null;
+    }
 }
