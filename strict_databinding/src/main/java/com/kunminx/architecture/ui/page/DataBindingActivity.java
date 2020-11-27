@@ -18,25 +18,18 @@
 
 package com.kunminx.architecture.ui.page;
 
-import android.app.Activity;
-import android.app.Application;
 import android.content.pm.ApplicationInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.kunminx.architecture.BaseApplication;
 import com.kunminx.strictdatabinding.R;
 
 
@@ -45,15 +38,12 @@ import com.kunminx.strictdatabinding.R;
  */
 public abstract class DataBindingActivity extends AppCompatActivity {
 
-    private ViewModelProvider mActivityProvider;
-    private ViewModelProvider mApplicationProvider;
     private ViewDataBinding mBinding;
     private TextView mTvStrictModeTip;
 
     protected abstract void initViewModel();
 
     protected abstract DataBindingConfig getDataBindingConfig();
-
 
     /**
      * TODO tip: 警惕使用。非必要情况下，尽可能不在子类中拿到 binding 实例乃至获取 view 实例。使用即埋下隐患。
@@ -105,50 +95,4 @@ public abstract class DataBindingActivity extends AppCompatActivity {
         return getApplicationContext().getApplicationInfo() != null &&
                 (getApplicationContext().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
     }
-
-    protected void showLongToast(String text) {
-        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
-    }
-
-    protected void showShortToast(String text) {
-        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
-    }
-
-    protected void showLongToast(int stringRes) {
-        showLongToast(getApplicationContext().getString(stringRes));
-    }
-
-    protected void showShortToast(int stringRes) {
-        showShortToast(getApplicationContext().getString(stringRes));
-    }
-
-    protected <T extends ViewModel> T getActivityScopeViewModel(@NonNull Class<T> modelClass) {
-        if (mActivityProvider == null) {
-            mActivityProvider = new ViewModelProvider(this);
-        }
-        return mActivityProvider.get(modelClass);
-    }
-
-    protected <T extends ViewModel> T getApplicationScopeViewModel(@NonNull Class<T> modelClass) {
-        if (mApplicationProvider == null) {
-            mApplicationProvider = new ViewModelProvider((BaseApplication) this.getApplicationContext(),
-                    getAppFactory(this));
-        }
-        return mApplicationProvider.get(modelClass);
-    }
-
-    private ViewModelProvider.Factory getAppFactory(Activity activity) {
-        Application application = checkApplication(activity);
-        return ViewModelProvider.AndroidViewModelFactory.getInstance(application);
-    }
-
-    private Application checkApplication(Activity activity) {
-        Application application = activity.getApplication();
-        if (application == null) {
-            throw new IllegalStateException("Your activity/fragment is not yet attached to "
-                    + "Application. You can't request ViewModel before onCreate call.");
-        }
-        return application;
-    }
-
 }
