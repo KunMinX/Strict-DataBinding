@@ -99,6 +99,7 @@ public abstract class DataBindingActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mBinding.unbind();
         mBinding = null;
     }
 }

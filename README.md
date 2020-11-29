@@ -17,7 +17,7 @@
 
 ```groovy
 //核心：DataBinding 严格模式基础框架
-implementation 'com.kunminx.archi:strict-databinding:3.6.0-beta1'
+implementation 'com.kunminx.archi:strict-databinding:3.6.1-beta1'
 
 //可选：常用 BindingAdapter 接口整理
 implementation 'com.kunminx.archi:binding-adapter:3.3.2-beta2'
@@ -30,6 +30,8 @@ implementation 'com.kunminx.archi:binding-recyclerview:3.3.2-beta3'
 > 在使用 “DataBinding 严格模式” 后，对于 “属性动画” 等 “对视图实例强依赖” 的场景，可借助 “Motion 动画” 等新式框架代替（确定 Motion 动画的学习成本不足属性动画的 20%，且效果好、收益高，具体视频教程可见我们在[《MotionChallenge》](https://github.com/Jetpack-Missionary/MotionChallenge)的分享）。
 >
 > 如对 Jetpack Compose 基于函数式编程思想 “解决视图调用一致性问题” 的理论基础感兴趣，可详见[《事关软件工程安全 的 数据驱动 UI 框架 扫盲干货》](https://xiaozhuanlan.com/topic/2356748910)的铺垫，此处不做累述。
+
+
 
 ## 版权声明
 

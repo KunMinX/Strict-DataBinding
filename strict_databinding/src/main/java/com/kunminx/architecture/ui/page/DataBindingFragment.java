@@ -122,6 +122,7 @@ public abstract class DataBindingFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        mBinding.unbind();
         mBinding = null;
     }
 }
