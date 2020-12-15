@@ -40,6 +40,13 @@ public class RecyclerViewBindingAdapter {
         }
     }
 
+    @BindingAdapter(value = {"notifyCurrentListChanged"}, requireAll = false)
+    public static void submitList(RecyclerView recyclerView, boolean notifyCurrentListChanged) {
+        if (notifyCurrentListChanged) {
+            recyclerView.getAdapter().notifyDataSetChanged();
+        }
+    }
+
     @BindingAdapter(value = {"autoScrollToTopWhenInsert", "autoScrollToBottomWhenInsert"}, requireAll = false)
     public static void autoScroll(RecyclerView recyclerView,
                                   boolean autoScrollToTopWhenInsert,
