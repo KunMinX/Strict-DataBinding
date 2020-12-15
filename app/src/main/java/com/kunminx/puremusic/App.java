@@ -16,10 +16,30 @@
 
 package com.kunminx.puremusic;
 
-import com.kunminx.architecture.BaseApplication;
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelStore;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 /**
  * Create by KunMinX at 19/10/29
  */
-public class App extends BaseApplication {
+public class App extends Application implements ViewModelStoreOwner {
+
+    private ViewModelStore mAppViewModelStore;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        mAppViewModelStore = new ViewModelStore();
+    }
+
+    @NonNull
+    @Override
+    public ViewModelStore getViewModelStore() {
+        return mAppViewModelStore;
+    }
 }
+

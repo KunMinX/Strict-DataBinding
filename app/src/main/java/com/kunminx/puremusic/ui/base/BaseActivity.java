@@ -29,8 +29,8 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.kunminx.architecture.BaseApplication;
 import com.kunminx.architecture.ui.page.DataBindingActivity;
+import com.kunminx.puremusic.App;
 import com.kunminx.puremusic.utils.AdaptScreenUtils;
 import com.kunminx.puremusic.utils.BarUtils;
 import com.kunminx.puremusic.utils.ScreenUtils;
@@ -71,7 +71,7 @@ public abstract class BaseActivity extends DataBindingActivity {
 
     protected <T extends ViewModel> T getApplicationScopeViewModel(@NonNull Class<T> modelClass) {
         if (mApplicationProvider == null) {
-            mApplicationProvider = new ViewModelProvider((BaseApplication) this.getApplicationContext(),
+            mApplicationProvider = new ViewModelProvider((App) this.getApplicationContext(),
                     getAppFactory(this));
         }
         return mApplicationProvider.get(modelClass);

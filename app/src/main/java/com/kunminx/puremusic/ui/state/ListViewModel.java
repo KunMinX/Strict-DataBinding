@@ -24,6 +24,7 @@ import com.kunminx.puremusic.data.bean.Moment;
 import com.kunminx.puremusic.domain.MomentRequest;
 import com.kunminx.puremusic.domain.Request;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,7 +32,7 @@ import java.util.List;
  */
 public class ListViewModel extends ViewModel implements Request.IMomentRequest {
 
-    public final MutableLiveData<List<Moment>> list = new MutableLiveData<>();
+    public final MutableLiveData<List<Moment>> list = new MutableLiveData<>(new ArrayList<>());
 
     public final MutableLiveData<Boolean> autoScrollToTopWhenInsert = new MutableLiveData<>();
 

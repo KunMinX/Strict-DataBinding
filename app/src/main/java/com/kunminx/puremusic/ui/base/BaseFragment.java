@@ -28,8 +28,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.kunminx.architecture.BaseApplication;
 import com.kunminx.architecture.ui.page.DataBindingFragment;
+import com.kunminx.puremusic.App;
 
 
 /**
@@ -58,7 +58,7 @@ public abstract class BaseFragment extends DataBindingFragment {
     protected <T extends ViewModel> T getApplicationScopeViewModel(@NonNull Class<T> modelClass) {
         if (mApplicationProvider == null) {
             mApplicationProvider = new ViewModelProvider(
-                    (BaseApplication) mActivity.getApplicationContext(), getApplicationFactory(mActivity));
+                    (App) mActivity.getApplicationContext(), getApplicationFactory(mActivity));
         }
         return mApplicationProvider.get(modelClass);
     }
