@@ -22,7 +22,7 @@ implementation 'com.kunminx.archi:strict-databinding:3.6.2-beta1'
 //可选：常用 BindingAdapter 接口整理
 implementation 'com.kunminx.archi:binding-adapter:3.3.2-beta2'
 //可选：常用 RecyclerView Binding 接口整理
-implementation 'com.kunminx.archi:binding-recyclerview:3.6.2-beta1'
+implementation 'com.kunminx.archi:binding-recyclerview:3.6.3-beta1'
 ```
 
 > **温馨提示：**
