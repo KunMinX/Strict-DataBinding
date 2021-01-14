@@ -28,9 +28,9 @@ import com.kunminx.puremusic.databinding.AdapterMomentBinding;
 /**
  * Create by KunMinX at 2020/5/31
  */
-public class MomentAdapterData extends SimpleDataBindingAdapter<Moment, AdapterMomentBinding> {
+public class MomentAdapter extends SimpleDataBindingAdapter<Moment, AdapterMomentBinding> {
 
-    public MomentAdapterData(Context context) {
+    public MomentAdapter(Context context) {
         super(context, R.layout.adapter_moment, new DiffUtilCallbacks().getMomentItemCallback());
     }
 

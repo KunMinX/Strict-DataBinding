@@ -28,7 +28,7 @@ import java.util.List;
 public class RecyclerViewBindingAdapter {
 
     @BindingAdapter(value = {"adapter"}, requireAll = false)
-    public static void setAdapter(RecyclerView recyclerView, ListAdapter adapter) {
+    public static void setAdapter(RecyclerView recyclerView, RecyclerView.Adapter adapter) {
         recyclerView.setAdapter(adapter);
     }
 
@@ -41,7 +41,7 @@ public class RecyclerViewBindingAdapter {
     }
 
     @BindingAdapter(value = {"notifyCurrentListChanged"}, requireAll = false)
-    public static void submitList(RecyclerView recyclerView, boolean notifyCurrentListChanged) {
+    public static void notifyCurrentListChanged(RecyclerView recyclerView, boolean notifyCurrentListChanged) {
         if (notifyCurrentListChanged) {
             recyclerView.getAdapter().notifyDataSetChanged();
         }
