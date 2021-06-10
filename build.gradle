@@ -1,15 +1,20 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+apply plugin: 'io.codearte.nexus-staging'
+
+
 buildscript {
 
     repositories {
         google()
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.3'
-        classpath 'com.novoda:bintray-release:0.9.2'
+        classpath 'com.android.tools.build:gradle:7.0.0-alpha08'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0'
     }
 
     tasks.withType(Javadoc) {
@@ -23,7 +28,8 @@ buildscript {
 allprojects {
     repositories {
         google()
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        jcenter()
+        mavenCentral()
     }
 }
 
