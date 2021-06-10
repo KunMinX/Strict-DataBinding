@@ -25,7 +25,7 @@ import com.kunminx.puremusic.BR;
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.data.bean.Moment;
 import com.kunminx.puremusic.ui.base.BaseFragment;
-import com.kunminx.puremusic.ui.callback.SharedViewModel;
+import com.kunminx.puremusic.ui.event.SharedViewModel;
 import com.kunminx.puremusic.ui.state.EditorViewModel;
 
 import java.util.UUID;
@@ -35,18 +35,18 @@ import java.util.UUID;
  */
 public class EditorFragment extends BaseFragment {
 
-    private EditorViewModel mEditorViewModel;
-    private SharedViewModel mSharedViewModel;
+    private EditorViewModel mState;
+    private SharedViewModel mEvent;
 
     @Override
     protected void initViewModel() {
-        mEditorViewModel = getFragmentScopeViewModel(EditorViewModel.class);
-        mSharedViewModel = getActivityScopeViewModel(SharedViewModel.class);
+        mState = getFragmentScopeViewModel(EditorViewModel.class);
+        mEvent = getActivityScopeViewModel(SharedViewModel.class);
     }
 
     @Override
     protected DataBindingConfig getDataBindingConfig() {
-        return new DataBindingConfig(R.layout.fragment_editor, BR.vm, mEditorViewModel)
+        return new DataBindingConfig(R.layout.fragment_editor, BR.vm, mState)
                 .addBindingParam(BR.click, new ClickProxy());
     }
 
@@ -67,9 +67,9 @@ public class EditorFragment extends BaseFragment {
                 Moment moment = new Moment();
                 moment.setUuid(UUID.randomUUID().toString());
                 moment.setUserName("KunMinX");
-                moment.setLocation(mEditorViewModel.location.get());
-                moment.setContent(mEditorViewModel.content.get());
-                mSharedViewModel.moment.postValue(moment);
+                moment.setLocation(mState.location.get());
+                moment.setContent(mState.content.get());
+                mEvent.moment.postValue(moment);
                 nav().navigateUp();
             }
             return true;

@@ -24,7 +24,7 @@ import com.kunminx.architecture.ui.page.DataBindingConfig;
 import com.kunminx.puremusic.BR;
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.ui.base.BaseActivity;
-import com.kunminx.puremusic.ui.callback.SharedViewModel;
+import com.kunminx.puremusic.ui.event.SharedViewModel;
 import com.kunminx.puremusic.ui.state.MainViewModel;
 
 /**
@@ -33,18 +33,18 @@ import com.kunminx.puremusic.ui.state.MainViewModel;
 
 public class MainActivity extends BaseActivity {
 
-    private MainViewModel mMainViewModel;
-    private SharedViewModel mSharedViewModel;
+    private MainViewModel mState;
+    private SharedViewModel mEvent;
 
     @Override
     protected void initViewModel() {
-        mMainViewModel = getActivityScopeViewModel(MainViewModel.class);
-        mSharedViewModel = getApplicationScopeViewModel(SharedViewModel.class);
+        mState = getActivityScopeViewModel(MainViewModel.class);
+        mEvent = getApplicationScopeViewModel(SharedViewModel.class);
     }
 
     @Override
     protected DataBindingConfig getDataBindingConfig() {
-        return new DataBindingConfig(R.layout.activity_main, BR.vm, mMainViewModel)
+        return new DataBindingConfig(R.layout.activity_main, BR.vm, mState)
                 .addBindingParam(BR.click, new ClickProxy());
     }
 
@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mSharedViewModel.moment.observeInActivity(this, moment -> {
+        mEvent.moment.observe(this, moment -> {
             Toast.makeText(this, moment.getContent(), Toast.LENGTH_SHORT).show();
         });
     }

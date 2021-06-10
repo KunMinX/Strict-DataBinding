@@ -1,14 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 30
 
     defaultConfig {
         applicationId "com.kunminx.strictdatabinding"
 
         minSdkVersion 23
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 10000
         versionName "1.0.0"
 
@@ -27,19 +26,9 @@ android {
         abortOnError false
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 
-    repositories {
-        flatDir {
-            dirs 'libs'
-        }
-    }
-
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
 
 }
@@ -62,7 +51,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata:2.2.0'
     implementation 'androidx.navigation:navigation-runtime:2.3.2'
 
-    implementation 'com.kunminx.archi:unpeek-livedata:4.4.1-beta1'
+    implementation 'com.kunminx.arch:unpeek-livedata:5.0.1-beta1'
     implementation 'com.kunminx.archi:smooth-navigation:3.3.2-beta5'
     implementation project(':strict_databinding')
     implementation project(':binding_recyclerview')
