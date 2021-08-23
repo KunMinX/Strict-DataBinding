@@ -1,4 +1,4 @@
-![](https://tva1.sinaimg.cn/large/008i3skNly1gre5lfycabj312e0awjsf.jpg)
+![](https://images.xiaozhuanlan.com/photo/2021/e3b68f1ec4b7be9762e87827cbc284f1.png)
 
 # Strict-DataBinding
 
