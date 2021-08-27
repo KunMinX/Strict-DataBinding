@@ -27,19 +27,19 @@ import androidx.lifecycle.ViewModelStoreOwner;
  */
 public class App extends Application implements ViewModelStoreOwner {
 
-    private ViewModelStore mAppViewModelStore;
+  private ViewModelStore mAppViewModelStore;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
+  @Override
+  public void onCreate() {
+    super.onCreate();
 
-        mAppViewModelStore = new ViewModelStore();
-    }
+    mAppViewModelStore = new ViewModelStore();
+  }
 
-    @NonNull
-    @Override
-    public ViewModelStore getViewModelStore() {
-        return mAppViewModelStore;
-    }
+  @NonNull
+  @Override
+  public ViewModelStore getViewModelStore() {
+    return mAppViewModelStore;
+  }
 }
 

@@ -16,9 +16,8 @@
 
 package com.kunminx.puremusic.domain;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
+import com.kunminx.architecture.ui.callback.ProtectedUnPeekLiveData;
+import com.kunminx.architecture.ui.callback.UnPeekLiveData;
 import com.kunminx.puremusic.data.DataRepository;
 import com.kunminx.puremusic.data.bean.Moment;
 
@@ -27,20 +26,15 @@ import java.util.List;
 /**
  * Create by KunMinX at 2020/5/30
  */
-public class MomentRequest implements Request.IMomentRequest {
+public class MomentRequest {
 
-    private MutableLiveData<List<Moment>> mListMutableLiveData;
+  private final UnPeekLiveData<List<Moment>> mListMutableLiveData = new UnPeekLiveData<>();
 
-    @Override
-    public LiveData<List<Moment>> getListMutableLiveData() {
-        if (mListMutableLiveData == null) {
-            mListMutableLiveData = new MutableLiveData<>();
-        }
-        return mListMutableLiveData;
-    }
+  public ProtectedUnPeekLiveData<List<Moment>> getList() {
+    return mListMutableLiveData;
+  }
 
-    @Override
-    public void requestList() {
-        DataRepository.getInstance().requestList(mListMutableLiveData);
-    }
+  public void requestList() {
+    DataRepository.getInstance().requestList(mListMutableLiveData);
+  }
 }

@@ -33,34 +33,34 @@ import com.kunminx.puremusic.ui.state.MainViewModel;
 
 public class MainActivity extends BaseActivity {
 
-    private MainViewModel mState;
-    private SharedViewModel mEvent;
+  private MainViewModel mState;
+  private SharedViewModel mEvent;
 
-    @Override
-    protected void initViewModel() {
-        mState = getActivityScopeViewModel(MainViewModel.class);
-        mEvent = getApplicationScopeViewModel(SharedViewModel.class);
+  @Override
+  protected void initViewModel() {
+    mState = getActivityScopeViewModel(MainViewModel.class);
+    mEvent = getApplicationScopeViewModel(SharedViewModel.class);
+  }
+
+  @Override
+  protected DataBindingConfig getDataBindingConfig() {
+    return new DataBindingConfig(R.layout.activity_main, BR.vm, mState)
+            .addBindingParam(BR.click, new ClickProxy());
+  }
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    mEvent.getMoment().observe(this, moment -> {
+      Toast.makeText(this, moment.getContent(), Toast.LENGTH_SHORT).show();
+    });
+  }
+
+  public class ClickProxy {
+
+    public void toSecondActivity() {
+      startActivity(new Intent(MainActivity.this, EditorActivity.class));
     }
-
-    @Override
-    protected DataBindingConfig getDataBindingConfig() {
-        return new DataBindingConfig(R.layout.activity_main, BR.vm, mState)
-                .addBindingParam(BR.click, new ClickProxy());
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        mEvent.moment.observe(this, moment -> {
-            Toast.makeText(this, moment.getContent(), Toast.LENGTH_SHORT).show();
-        });
-    }
-
-    public class ClickProxy {
-
-        public void toSecondActivity() {
-            startActivity(new Intent(MainActivity.this, EditorActivity.class));
-        }
-    }
+  }
 }

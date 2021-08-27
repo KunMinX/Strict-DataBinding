@@ -30,12 +30,12 @@ import com.kunminx.puremusic.databinding.AdapterMomentBinding;
  */
 public class MomentAdapter extends SimpleDataBindingAdapter<Moment, AdapterMomentBinding> {
 
-    public MomentAdapter(Context context) {
-        super(context, R.layout.adapter_moment, new DiffUtilCallbacks().getMomentItemCallback());
-    }
+  public MomentAdapter(Context context) {
+    super(context, R.layout.adapter_moment, new DiffUtilCallbacks().getMomentItemCallback());
+  }
 
-    @Override
-    protected void onBindItem(AdapterMomentBinding binding, Moment item, RecyclerView.ViewHolder holder) {
-        binding.setMoment(item);
-    }
+  @Override
+  protected void onBindItem(AdapterMomentBinding binding, Moment item, RecyclerView.ViewHolder holder) {
+    binding.setMoment(item);
+  }
 }

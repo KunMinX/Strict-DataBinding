@@ -35,44 +35,44 @@ import java.util.UUID;
  */
 public class EditorFragment extends BaseFragment {
 
-    private EditorViewModel mState;
-    private SharedViewModel mEvent;
+  private EditorViewModel mState;
+  private SharedViewModel mEvent;
 
-    @Override
-    protected void initViewModel() {
-        mState = getFragmentScopeViewModel(EditorViewModel.class);
-        mEvent = getActivityScopeViewModel(SharedViewModel.class);
+  @Override
+  protected void initViewModel() {
+    mState = getFragmentScopeViewModel(EditorViewModel.class);
+    mEvent = getActivityScopeViewModel(SharedViewModel.class);
+  }
+
+  @Override
+  protected DataBindingConfig getDataBindingConfig() {
+    return new DataBindingConfig(R.layout.fragment_editor, BR.vm, mState)
+            .addBindingParam(BR.click, new ClickProxy());
+  }
+
+  public class ClickProxy implements Toolbar.OnMenuItemClickListener {
+
+    public void locate() {
+
+    }
+
+    public void back() {
+      nav().navigateUp();
     }
 
     @Override
-    protected DataBindingConfig getDataBindingConfig() {
-        return new DataBindingConfig(R.layout.fragment_editor, BR.vm, mState)
-                .addBindingParam(BR.click, new ClickProxy());
+    public boolean onMenuItemClick(MenuItem item) {
+      if (item.getItemId() == R.id.menu_save) {
+        toggleSoftInput();
+        Moment moment = new Moment();
+        moment.setUuid(UUID.randomUUID().toString());
+        moment.setUserName("KunMinX");
+        moment.setLocation(mState.location.get());
+        moment.setContent(mState.content.get());
+        mEvent.requestUpdateMoment(moment);
+        nav().navigateUp();
+      }
+      return true;
     }
-
-    public class ClickProxy implements Toolbar.OnMenuItemClickListener {
-
-        public void locate() {
-
-        }
-
-        public void back() {
-            nav().navigateUp();
-        }
-
-        @Override
-        public boolean onMenuItemClick(MenuItem item) {
-            if (item.getItemId() == R.id.menu_save) {
-                toggleSoftInput();
-                Moment moment = new Moment();
-                moment.setUuid(UUID.randomUUID().toString());
-                moment.setUserName("KunMinX");
-                moment.setLocation(mState.location.get());
-                moment.setContent(mState.content.get());
-                mEvent.moment.postValue(moment);
-                nav().navigateUp();
-            }
-            return true;
-        }
-    }
+  }
 }

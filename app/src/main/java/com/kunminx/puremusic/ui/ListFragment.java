@@ -35,42 +35,42 @@ import com.kunminx.puremusic.ui.state.ListViewModel;
  */
 public class ListFragment extends BaseFragment {
 
-    private ListViewModel mState;
-    private SharedViewModel mEvent;
+  private ListViewModel mState;
+  private SharedViewModel mEvent;
 
-    @Override
-    protected void initViewModel() {
-        mState = getFragmentScopeViewModel(ListViewModel.class);
-        mEvent = getActivityScopeViewModel(SharedViewModel.class);
+  @Override
+  protected void initViewModel() {
+    mState = getFragmentScopeViewModel(ListViewModel.class);
+    mEvent = getActivityScopeViewModel(SharedViewModel.class);
+  }
+
+  @Override
+  protected DataBindingConfig getDataBindingConfig() {
+
+    return new DataBindingConfig(R.layout.fragment_list, BR.vm, mState)
+            .addBindingParam(BR.click, new ClickProxy())
+            .addBindingParam(BR.adapter, new MomentAdapter(mActivity.getApplicationContext()));
+  }
+
+  @Override
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+
+    mState.momentRequest.getList().observe(getViewLifecycleOwner(), moments -> {
+      mState.list.setValue(moments);
+    });
+
+    mEvent.getMoment().observe(this, moment -> {
+      mState.list.getValue().add(0, moment);
+      mState.list.setValue(mState.list.getValue());
+    });
+
+    mState.momentRequest.requestList();
+  }
+
+  public class ClickProxy {
+    public void fabClick() {
+      nav().navigate(R.id.action_listFragment_to_editorFragment);
     }
-
-    @Override
-    protected DataBindingConfig getDataBindingConfig() {
-
-        return new DataBindingConfig(R.layout.fragment_list, BR.vm, mState)
-                .addBindingParam(BR.click, new ClickProxy())
-                .addBindingParam(BR.adapter, new MomentAdapter(mActivity.getApplicationContext()));
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        getBinding();
-        mState.getListMutableLiveData().observe(getViewLifecycleOwner(), moments -> {
-            mState.list.setValue(moments);
-        });
-
-        mEvent.moment.observe(this, moment -> {
-            mState.list.getValue().add(0, moment);
-            mState.list.setValue(mState.list.getValue());
-        });
-
-        mState.requestList();
-    }
-
-    public class ClickProxy {
-        public void fabClick() {
-            nav().navigate(R.id.action_listFragment_to_editorFragment);
-        }
-    }
+  }
 }

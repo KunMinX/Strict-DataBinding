@@ -35,44 +35,44 @@ import java.util.UUID;
  */
 public class EditorActivity extends BaseActivity {
 
-    private EditorViewModel mState;
-    private SharedViewModel mEvent;
+  private EditorViewModel mState;
+  private SharedViewModel mEvent;
 
-    @Override
-    protected void initViewModel() {
-        mState = getActivityScopeViewModel(EditorViewModel.class);
-        mEvent = getApplicationScopeViewModel(SharedViewModel.class);
+  @Override
+  protected void initViewModel() {
+    mState = getActivityScopeViewModel(EditorViewModel.class);
+    mEvent = getApplicationScopeViewModel(SharedViewModel.class);
+  }
+
+  @Override
+  protected DataBindingConfig getDataBindingConfig() {
+    return new DataBindingConfig(R.layout.activity_editor, BR.vm, mState)
+            .addBindingParam(BR.click, new ClickProxy());
+  }
+
+  public class ClickProxy implements Toolbar.OnMenuItemClickListener {
+
+    public void locate() {
+
+    }
+
+    public void back() {
+      finish();
     }
 
     @Override
-    protected DataBindingConfig getDataBindingConfig() {
-        return new DataBindingConfig(R.layout.activity_editor, BR.vm, mState)
-                .addBindingParam(BR.click, new ClickProxy());
+    public boolean onMenuItemClick(MenuItem item) {
+      if (item.getItemId() == R.id.menu_save) {
+        toggleSoftInput();
+        Moment moment = new Moment();
+        moment.setUuid(UUID.randomUUID().toString());
+        moment.setUserName("KunMinX");
+        moment.setLocation(mState.location.get());
+        moment.setContent(mState.content.get());
+        mEvent.requestUpdateMoment(moment);
+        finish();
+      }
+      return true;
     }
-
-    public class ClickProxy implements Toolbar.OnMenuItemClickListener {
-
-        public void locate() {
-
-        }
-
-        public void back() {
-            finish();
-        }
-
-        @Override
-        public boolean onMenuItemClick(MenuItem item) {
-            if (item.getItemId() == R.id.menu_save) {
-                toggleSoftInput();
-                Moment moment = new Moment();
-                moment.setUuid(UUID.randomUUID().toString());
-                moment.setUserName("KunMinX");
-                moment.setLocation(mState.location.get());
-                moment.setContent(mState.content.get());
-                mEvent.moment.setValue(moment);
-                finish();
-            }
-            return true;
-        }
-    }
+  }
 }

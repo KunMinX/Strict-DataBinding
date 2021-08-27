@@ -18,6 +18,7 @@ package com.kunminx.puremusic.ui.event;
 
 import androidx.lifecycle.ViewModel;
 
+import com.kunminx.architecture.ui.callback.ProtectedUnPeekLiveData;
 import com.kunminx.architecture.ui.callback.UnPeekLiveData;
 import com.kunminx.puremusic.data.bean.Moment;
 
@@ -26,11 +27,13 @@ import com.kunminx.puremusic.data.bean.Moment;
  */
 public class SharedViewModel extends ViewModel {
 
-    public final UnPeekLiveData<Moment> moment = new UnPeekLiveData<>();
+  private final UnPeekLiveData<Moment> moment = new UnPeekLiveData<>();
 
-    public UnPeekLiveData<Moment> test =
-            new UnPeekLiveData.Builder<Moment>()
-                    .setAllowNullValue(false)
-                    .create();
+  public ProtectedUnPeekLiveData<Moment> getMoment() {
+    return moment;
+  }
 
+  public void requestUpdateMoment(Moment moment) {
+    this.moment.setValue(moment);
+  }
 }

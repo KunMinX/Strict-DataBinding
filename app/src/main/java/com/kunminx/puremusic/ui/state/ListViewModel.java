@@ -16,13 +16,11 @@
 
 package com.kunminx.puremusic.ui.state;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.kunminx.puremusic.data.bean.Moment;
 import com.kunminx.puremusic.domain.MomentRequest;
-import com.kunminx.puremusic.domain.Request;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,25 +28,11 @@ import java.util.List;
 /**
  * Create by KunMinX at 2020/5/30
  */
-public class ListViewModel extends ViewModel implements Request.IMomentRequest {
+public class ListViewModel extends ViewModel {
 
-    public final MutableLiveData<List<Moment>> list = new MutableLiveData<>(new ArrayList<>());
+  public final MutableLiveData<List<Moment>> list = new MutableLiveData<>(new ArrayList<>());
 
-    public final MutableLiveData<Boolean> autoScrollToTopWhenInsert = new MutableLiveData<>();
+  public final MutableLiveData<Boolean> autoScrollToTopWhenInsert = new MutableLiveData<>(true);
 
-    private MomentRequest mMomentRequest = new MomentRequest();
-
-    {
-        autoScrollToTopWhenInsert.setValue(true);
-    }
-
-    @Override
-    public LiveData<List<Moment>> getListMutableLiveData() {
-        return mMomentRequest.getListMutableLiveData();
-    }
-
-    @Override
-    public void requestList() {
-        mMomentRequest.requestList();
-    }
+  public final MomentRequest momentRequest = new MomentRequest();
 }
