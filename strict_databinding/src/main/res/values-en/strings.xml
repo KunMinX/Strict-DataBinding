@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="debug_fragment_databinding_warning">Debugging tips: This Fragment does not follow the DataBinding strict mode, there is a Null security risk of view calls</string>
-    <string name="debug_activity_databinding_warning">Debugging tips: This Activity does not follow the DataBinding strict mode, there is a Null security risk of view calls</string>
+    <string name="debug_databinding_warning">%s does not follow the DataBinding strict mode, there is a Null security risk of view calls</string>
 </resources>

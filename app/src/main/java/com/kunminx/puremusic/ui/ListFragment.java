@@ -55,7 +55,7 @@ public class ListFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        getBinding();
         mState.getListMutableLiveData().observe(getViewLifecycleOwner(), moments -> {
             mState.list.setValue(moments);
         });
