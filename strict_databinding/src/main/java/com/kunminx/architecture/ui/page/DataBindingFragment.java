@@ -114,7 +114,7 @@ public abstract class DataBindingFragment extends Fragment {
     // 如果这样说还不理解的话，详见 https://xiaozhuanlan.com/topic/9816742350 和 https://xiaozhuanlan.com/topic/2356748910
 
     ViewDataBinding binding = DataBindingUtil.inflate(inflater, dataBindingConfig.getLayout(), container, false);
-    binding.setLifecycleOwner(this);
+    binding.setLifecycleOwner(getViewLifecycleOwner());
     binding.setVariable(dataBindingConfig.getVmVariableId(), dataBindingConfig.getStateViewModel());
     SparseArray<Object> bindingParams = dataBindingConfig.getBindingParams();
     for (int i = 0, length = bindingParams.size(); i < length; i++) {

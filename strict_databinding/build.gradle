@@ -19,8 +19,8 @@ apply plugin: 'com.android.library'
 ext {
     PUBLISH_GROUP_ID = 'com.kunminx.arch'
     PUBLISH_ARTIFACT_ID = 'strict-databinding'
-    PUBLISH_VERSION = '3.9.0-beta1'
-    VERSION_CODE = 3090001
+    PUBLISH_VERSION = '4.0.0-beta1'
+    VERSION_CODE = 4000001
 
     ARTIFACT_DESCRIPTION = '透过独创的 DataBinding 严格模式，使 100% 彻底解决 “视图调用的一致性问题”，null 安全性与基于函数式编程思想的 Jetpack Compose 持平'
 
