@@ -21,14 +21,20 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModel;
 
 import com.kunminx.architecture.ui.page.DataBindingConfig;
+import com.kunminx.architecture.ui.page.State;
 import com.kunminx.puremusic.BR;
 import com.kunminx.puremusic.R;
+import com.kunminx.puremusic.data.bean.Moment;
+import com.kunminx.puremusic.domain.message.PageMessenger;
+import com.kunminx.puremusic.domain.request.MomentRequest;
 import com.kunminx.puremusic.ui.adapter.MomentAdapter;
 import com.kunminx.puremusic.ui.base.BaseFragment;
-import com.kunminx.puremusic.ui.event.SharedViewModel;
-import com.kunminx.puremusic.ui.state.ListViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Create by KunMinX at 2020/5/30
@@ -36,12 +42,14 @@ import com.kunminx.puremusic.ui.state.ListViewModel;
 public class ListFragment extends BaseFragment {
 
   private ListViewModel mState;
-  private SharedViewModel mEvent;
+  private PageMessenger mMessenger;
+  private MomentRequest mMomentRequest;
 
   @Override
   protected void initViewModel() {
     mState = getFragmentScopeViewModel(ListViewModel.class);
-    mEvent = getActivityScopeViewModel(SharedViewModel.class);
+    mMessenger = getActivityScopeViewModel(PageMessenger.class);
+    mMomentRequest = getFragmentScopeViewModel(MomentRequest.class);
   }
 
   @Override
@@ -56,21 +64,26 @@ public class ListFragment extends BaseFragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    mState.momentRequest.getList().observe(getViewLifecycleOwner(), moments -> {
-      mState.list.setValue(moments);
+    mMomentRequest.getListResult().observe(getViewLifecycleOwner(), moments -> {
+      mState.list.set(moments);
     });
 
-    mEvent.getMoment().observe(this, moment -> {
-      mState.list.getValue().add(0, moment);
-      mState.list.setValue(mState.list.getValue());
+    mMessenger.getMomentResult().observe(getViewLifecycleOwner(), moment -> {
+      mState.list.get().add(0, moment);
+      mState.list.set(mState.list.get());
     });
 
-    mState.momentRequest.requestList();
+    mMomentRequest.requestList();
   }
 
   public class ClickProxy {
     public void fabClick() {
       nav().navigate(R.id.action_listFragment_to_editorFragment);
     }
+  }
+
+  public static class ListViewModel extends ViewModel {
+    public final State<List<Moment>> list = new State<>(new ArrayList<>());
+    public final State<Boolean> autoScrollToTopWhenInsert = new State<>(true);
   }
 }

@@ -16,7 +16,7 @@
 
 package com.kunminx.puremusic.data;
 
-import com.kunminx.architecture.ui.callback.UnPeekLiveData;
+import com.kunminx.architecture.domain.message.MutableResult;
 import com.kunminx.puremusic.data.bean.Moment;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ import java.util.UUID;
  */
 public class DataRepository {
 
-  private static DataRepository sRepository = new DataRepository();
+  private static final DataRepository sRepository = new DataRepository();
 
   public static DataRepository getInstance() {
     return sRepository;
@@ -37,7 +37,7 @@ public class DataRepository {
   private DataRepository() {
   }
 
-  public void requestList(UnPeekLiveData<List<Moment>> liveData) {
+  public void requestList(MutableResult<List<Moment>> listMutableResult) {
     List<Moment> list = new ArrayList<>();
 
     list.add(new Moment(getUUID(), "刚刚在B站发表了最新一期的视频讲解，感兴趣的小伙伴可前往查阅",
@@ -64,7 +64,7 @@ public class DataRepository {
     list.add(new Moment(getUUID(), "刚刚在B站发表了最新一期的视频讲解，感兴趣的小伙伴可前往查阅",
             "台北夜市一条街", null, "KunMinX", null));
 
-    liveData.setValue(list);
+    listMutableResult.setValue(list);
   }
 
   private String getUUID() {

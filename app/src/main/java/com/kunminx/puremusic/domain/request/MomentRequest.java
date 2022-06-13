@@ -14,26 +14,29 @@
  * limitations under the License.
  */
 
-package com.kunminx.puremusic.ui.event;
+package com.kunminx.puremusic.domain.request;
 
 import androidx.lifecycle.ViewModel;
 
-import com.kunminx.architecture.ui.callback.ProtectedUnPeekLiveData;
-import com.kunminx.architecture.ui.callback.UnPeekLiveData;
+import com.kunminx.architecture.domain.message.MutableResult;
+import com.kunminx.architecture.domain.message.Result;
+import com.kunminx.puremusic.data.DataRepository;
 import com.kunminx.puremusic.data.bean.Moment;
+
+import java.util.List;
 
 /**
  * Create by KunMinX at 2020/5/30
  */
-public class SharedViewModel extends ViewModel {
+public class MomentRequest extends ViewModel {
 
-  private final UnPeekLiveData<Moment> moment = new UnPeekLiveData<>();
+  private final MutableResult<List<Moment>> listResult = new MutableResult<>();
 
-  public ProtectedUnPeekLiveData<Moment> getMoment() {
-    return moment;
+  public Result<List<Moment>> getListResult() {
+    return listResult;
   }
 
-  public void requestUpdateMoment(Moment moment) {
-    this.moment.setValue(moment);
+  public void requestList() {
+    DataRepository.getInstance().requestList(listResult);
   }
 }

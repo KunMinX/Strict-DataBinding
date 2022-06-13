@@ -20,12 +20,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.lifecycle.ViewModel;
+
 import com.kunminx.architecture.ui.page.DataBindingConfig;
 import com.kunminx.puremusic.BR;
 import com.kunminx.puremusic.R;
+import com.kunminx.puremusic.domain.message.PageMessenger;
 import com.kunminx.puremusic.ui.base.BaseActivity;
-import com.kunminx.puremusic.ui.event.SharedViewModel;
-import com.kunminx.puremusic.ui.state.MainViewModel;
 
 /**
  * Create by KunMinX at 19/10/16
@@ -34,12 +35,12 @@ import com.kunminx.puremusic.ui.state.MainViewModel;
 public class MainActivity extends BaseActivity {
 
   private MainViewModel mState;
-  private SharedViewModel mEvent;
+  private PageMessenger mMessenger;
 
   @Override
   protected void initViewModel() {
     mState = getActivityScopeViewModel(MainViewModel.class);
-    mEvent = getApplicationScopeViewModel(SharedViewModel.class);
+    mMessenger = getApplicationScopeViewModel(PageMessenger.class);
   }
 
   @Override
@@ -52,7 +53,7 @@ public class MainActivity extends BaseActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    mEvent.getMoment().observe(this, moment -> {
+    mMessenger.getMomentResult().observe(this, moment -> {
       Toast.makeText(this, moment.getContent(), Toast.LENGTH_SHORT).show();
     });
   }
@@ -62,5 +63,8 @@ public class MainActivity extends BaseActivity {
     public void toSecondActivity() {
       startActivity(new Intent(MainActivity.this, EditorActivity.class));
     }
+  }
+
+  public static class MainViewModel extends ViewModel {
   }
 }

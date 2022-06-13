@@ -19,14 +19,15 @@ package com.kunminx.puremusic.ui;
 import android.view.MenuItem;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModel;
 
 import com.kunminx.architecture.ui.page.DataBindingConfig;
+import com.kunminx.architecture.ui.page.State;
 import com.kunminx.puremusic.BR;
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.data.bean.Moment;
+import com.kunminx.puremusic.domain.message.PageMessenger;
 import com.kunminx.puremusic.ui.base.BaseActivity;
-import com.kunminx.puremusic.ui.event.SharedViewModel;
-import com.kunminx.puremusic.ui.state.EditorViewModel;
 
 import java.util.UUID;
 
@@ -36,12 +37,12 @@ import java.util.UUID;
 public class EditorActivity extends BaseActivity {
 
   private EditorViewModel mState;
-  private SharedViewModel mEvent;
+  private PageMessenger mMessenger;
 
   @Override
   protected void initViewModel() {
     mState = getActivityScopeViewModel(EditorViewModel.class);
-    mEvent = getApplicationScopeViewModel(SharedViewModel.class);
+    mMessenger = getApplicationScopeViewModel(PageMessenger.class);
   }
 
   @Override
@@ -69,10 +70,15 @@ public class EditorActivity extends BaseActivity {
         moment.setUserName("KunMinX");
         moment.setLocation(mState.location.get());
         moment.setContent(mState.content.get());
-        mEvent.requestUpdateMoment(moment);
+        mMessenger.requestMoment(moment);
         finish();
       }
       return true;
     }
+  }
+
+  public static class EditorViewModel extends ViewModel {
+    public final State<String> content = new State<>("");
+    public final State<String> location = new State<>("添加定位");
   }
 }
