@@ -24,7 +24,7 @@
 
 ```groovy
 //核心：DataBinding 严格模式基础框架
-implementation 'com.kunminx.arch:strict-databinding:5.0.0-beta1'
+implementation 'com.kunminx.arch:strict-databinding:5.1.0-beta1'
 
 //可选：常用 BindingAdapter 接口整理
 implementation 'com.kunminx.arch:binding-adapter:3.4.0-beta1'

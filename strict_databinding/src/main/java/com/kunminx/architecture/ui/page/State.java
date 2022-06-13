@@ -1,5 +1,6 @@
 package com.kunminx.architecture.ui.page;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 
 /**
@@ -9,21 +10,23 @@ public class State<T> extends ObservableField<T> {
 
   private final boolean mIsDebouncing;
 
-  public State() {
-    this(null);
-  }
-
-  public State(T value) {
+  /**
+   * 务必根据泛型提供初值，以彻底规避 Null 安全问题
+   * Be sure to provide initial values based on generics to completely avoid null security issues
+   *
+   * @param value initial value
+   */
+  public State(@NonNull T value) {
     this(value, false);
   }
 
-  public State(T value, boolean isDebouncing) {
+  public State(@NonNull T value, boolean isDebouncing) {
     super(value);
     mIsDebouncing = isDebouncing;
   }
 
   @Override
-  public void set(T value) {
+  public void set(@NonNull T value) {
     boolean isUnChanged = get() == value;
     super.set(value);
     if (!mIsDebouncing && isUnChanged) {
