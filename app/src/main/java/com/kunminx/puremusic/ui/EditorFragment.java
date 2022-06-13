@@ -65,11 +65,14 @@ public class EditorFragment extends BaseFragment {
     public boolean onMenuItemClick(MenuItem item) {
       if (item.getItemId() == R.id.menu_save) {
         toggleSoftInput();
-        Moment moment = new Moment();
-        moment.setUuid(UUID.randomUUID().toString());
-        moment.setUserName("KunMinX");
-        moment.setLocation(mState.location.get());
-        moment.setContent(mState.content.get());
+        Moment moment = new Moment(
+                UUID.randomUUID().toString(),
+                mState.content.get(),
+                mState.location.get(),
+                null,
+                "KunMinX",
+                null
+        );
         mMessenger.requestMoment(moment);
         nav().navigateUp();
       }
