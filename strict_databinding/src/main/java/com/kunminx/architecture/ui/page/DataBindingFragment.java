@@ -68,9 +68,9 @@ public abstract class DataBindingFragment extends Fragment {
 
   /**
    * TODO tip: 警惕使用。非必要情况下，尽可能不在子类中拿到 binding 实例乃至获取 view 实例。使用即埋下隐患。
-   * 目前的方案是在 debug 模式下，对获取实例的情况给予提示。
+   * 目前方案是于 debug 模式，对获取实例情况给予提示。
    * <p>
-   * 如果这样说还不理解的话，详见 https://xiaozhuanlan.com/topic/9816742350 和 https://xiaozhuanlan.com/topic/2356748910
+   * 如这么说无体会，详见 https://xiaozhuanlan.com/topic/9816742350 和 https://xiaozhuanlan.com/topic/2356748910
    *
    * @return binding
    */
@@ -108,10 +108,10 @@ public abstract class DataBindingFragment extends Fragment {
 
     //TODO tip: DataBinding 严格模式：
     // 将 DataBinding 实例限制于 base 页面中，默认不向子类暴露，
-    // 通过这样的方式，来彻底解决 视图调用的一致性问题，
-    // 如此，视图调用的安全性将和基于函数式编程思想的 Jetpack Compose 持平。
+    // 通过这方式，彻底解决 视图调用一致性问题，
+    // 如此，视图调用安全性将与基于函数式编程思想 Jetpack Compose 持平。
 
-    // 如果这样说还不理解的话，详见 https://xiaozhuanlan.com/topic/9816742350 和 https://xiaozhuanlan.com/topic/2356748910
+    // 如这么说无体会，详见 https://xiaozhuanlan.com/topic/9816742350 和 https://xiaozhuanlan.com/topic/2356748910
 
     ViewDataBinding binding = DataBindingUtil.inflate(inflater, dataBindingConfig.getLayout(), container, false);
     binding.setLifecycleOwner(getViewLifecycleOwner());
