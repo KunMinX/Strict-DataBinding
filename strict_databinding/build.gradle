@@ -15,6 +15,8 @@
  */
 
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.github.KunMinX'
 
 ext {
     PUBLISH_GROUP_ID = 'com.kunminx.arch'
@@ -22,20 +24,20 @@ ext {
     PUBLISH_VERSION = appVersionName
     VERSION_CODE = appVersionCode
 
-    ARTIFACT_DESCRIPTION = '透过独创的 DataBinding 严格模式，使 100% 彻底解决 “视图调用的一致性问题”，null 安全性与基于函数式编程思想的 Jetpack Compose 持平'
+    ARTIFACT_DESCRIPTION = '透过独创 DataBinding 严格模式，彻底解决 “视图调用一致性问题”，null 安全性与基于函数式编程思想 Jetpack Compose 持平'
 
-    POM_URL='https://github.com/KunMinX/Strict-DataBinding'
-    POM_SCM_URL='https://github.com/KunMinX/Strict-DataBinding/tree/master'
-    POM_SCM_CONNECTION='scm:git:github.com/KunMinX/Strict-DataBinding.git'
-    POM_SCM_DEV_CONNECTION='scm:git:ssh://github.com/KunMinX/Strict-DataBinding.git'
+    POM_URL = 'https://github.com/KunMinX/Strict-DataBinding'
+    POM_SCM_URL = 'https://github.com/KunMinX/Strict-DataBinding/tree/master'
+    POM_SCM_CONNECTION = 'scm:git:github.com/KunMinX/Strict-DataBinding.git'
+    POM_SCM_DEV_CONNECTION = 'scm:git:ssh://github.com/KunMinX/Strict-DataBinding.git'
 
-    POM_DEVELOPER_ID='KunMinX'
-    POM_DEVELOPER_NAME='KunMinX'
-    POM_DEVELOPER_URL='https://github.com/KunMinX'
-    POM_DEVELOPER_EMAIL='kunminx@gmail.com'
+    POM_DEVELOPER_ID = 'KunMinX'
+    POM_DEVELOPER_NAME = 'KunMinX'
+    POM_DEVELOPER_URL = 'https://github.com/KunMinX'
+    POM_DEVELOPER_EMAIL = 'kunminx@gmail.com'
 
-    LICENSE_NAME='The Apache Software License, Version 2.0'
-    LICENSE_URL='http://www.apache.org/licenses/LICENSE-2.0.txt'
+    LICENSE_NAME = 'The Apache Software License, Version 2.0'
+    LICENSE_URL = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
 
     uploadJavadocs = false
     uploadSources = false
@@ -45,11 +47,11 @@ apply from: "${rootProject.projectDir}/publish-mavencentral.gradle"
 
 
 android {
-    compileSdk appTargetSdk
+    compileSdkVersion appTargetSdk
 
     defaultConfig {
-        minSdk appMinSdk
-        targetSdk appTargetSdk
+        minSdkVersion appMinSdk
+        targetSdkVersion appTargetSdk
         versionCode appVersionCode
         versionName appVersionName
 
@@ -85,7 +87,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.4.1'
-
 }
 

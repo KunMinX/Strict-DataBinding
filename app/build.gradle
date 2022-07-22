@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdk appTargetSdk
+    compileSdkVersion appTargetSdk
 
     defaultConfig {
         applicationId "com.kunminx.strictdatabinding"
-        minSdk appMinSdk
-        targetSdk appTargetSdk
+        minSdkVersion appMinSdk
+        targetSdkVersion appTargetSdk
         versionCode appVersionCode
         versionName appVersionName
 
@@ -25,11 +25,14 @@ android {
         abortOnError false
     }
 
-
     buildFeatures {
         dataBinding = true
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {

@@ -16,7 +16,6 @@
 
 package com.kunminx.puremusic.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -45,8 +44,7 @@ public class MainActivity extends BaseActivity {
 
   @Override
   protected DataBindingConfig getDataBindingConfig() {
-    return new DataBindingConfig(R.layout.activity_main, BR.vm, mState)
-            .addBindingParam(BR.click, new ClickProxy());
+    return new DataBindingConfig(R.layout.activity_main, BR.vm, mState);
   }
 
   @Override
@@ -56,13 +54,6 @@ public class MainActivity extends BaseActivity {
     mMessenger.getMomentResult().observe(this, moment -> {
       Toast.makeText(this, moment.getContent(), Toast.LENGTH_SHORT).show();
     });
-  }
-
-  public class ClickProxy {
-
-    public void toSecondActivity() {
-      startActivity(new Intent(MainActivity.this, EditorActivity.class));
-    }
   }
 
   public static class MainViewModel extends ViewModel {

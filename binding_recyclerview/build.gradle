@@ -15,6 +15,8 @@
  */
 
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.github.KunMinX'
 
 ext {
     PUBLISH_GROUP_ID = 'com.kunminx.arch'
@@ -22,7 +24,7 @@ ext {
     PUBLISH_VERSION = appVersionName
     VERSION_CODE = appVersionCode
 
-    ARTIFACT_DESCRIPTION = '透过独创的 DataBinding 严格模式，使 100% 彻底解决 “视图调用的一致性问题”，null 安全性与基于函数式编程思想的 Jetpack Compose 持平'
+    ARTIFACT_DESCRIPTION = '透过独创 DataBinding 严格模式，彻底解决 “视图调用一致性问题”，null 安全性与基于函数式编程思想 Jetpack Compose 持平'
 
     POM_URL = 'https://github.com/KunMinX/Strict-DataBinding'
     POM_SCM_URL = 'https://github.com/KunMinX/Strict-DataBinding/tree/master'
@@ -45,11 +47,11 @@ apply from: "${rootProject.projectDir}/publish-mavencentral.gradle"
 
 
 android {
-    compileSdk appTargetSdk
+    compileSdkVersion appTargetSdk
 
     defaultConfig {
-        minSdk appMinSdk
-        targetSdk appTargetSdk
+        minSdkVersion appMinSdk
+        targetSdkVersion appTargetSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -66,6 +68,10 @@ android {
         dataBinding = true
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 tasks.withType(Javadoc) {

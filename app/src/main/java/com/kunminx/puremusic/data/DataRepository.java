@@ -40,29 +40,11 @@ public class DataRepository {
   public void requestList(MutableResult<List<Moment>> listMutableResult) {
     List<Moment> list = new ArrayList<>();
 
-    list.add(new Moment(getUUID(), "刚刚在B站发表了最新一期的视频讲解，感兴趣的小伙伴可前往查阅",
-            "台北夜市一条街", null, "KunMinX", null));
-
-    list.add(new Moment(getUUID(), "刚刚在B站发表了最新一期的视频讲解，感兴趣的小伙伴可前往查阅",
-            "台北夜市一条街", null, "KunMinX", null));
-
-    list.add(new Moment(getUUID(), "刚刚在B站发表了最新一期的视频讲解，感兴趣的小伙伴可前往查阅",
-            "台北夜市一条街", null, "KunMinX", null));
-
-    list.add(new Moment(getUUID(), "刚刚在B站发表了最新一期的视频讲解，感兴趣的小伙伴可前往查阅",
-            "台北夜市一条街", null, "KunMinX", null));
-
-    list.add(new Moment(getUUID(), "刚刚在B站发表了最新一期的视频讲解，感兴趣的小伙伴可前往查阅",
-            "台北夜市一条街", null, "KunMinX", null));
-
-    list.add(new Moment(getUUID(), "刚刚在B站发表了最新一期的视频讲解，感兴趣的小伙伴可前往查阅",
-            "台北夜市一条街", null, "KunMinX", null));
-
-    list.add(new Moment(getUUID(), "刚刚在B站发表了最新一期的视频讲解，感兴趣的小伙伴可前往查阅",
-            "台北夜市一条街", null, "KunMinX", null));
-
-    list.add(new Moment(getUUID(), "刚刚在B站发表了最新一期的视频讲解，感兴趣的小伙伴可前往查阅",
-            "台北夜市一条街", null, "KunMinX", null));
+    for (int i = 0; i < 20; i++) {
+      list.add(new Moment(getUUID(), "Strict-DataBinding bind bd",
+              "台北夜市一条街", null, "KunMinX",
+              "https://tva1.sinaimg.cn/large/e6c9d24ely1h4exa8m7quj20ju0juaax.jpg"));
+    }
 
     listMutableResult.setValue(list);
   }
