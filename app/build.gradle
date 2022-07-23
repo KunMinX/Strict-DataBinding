@@ -55,8 +55,8 @@ dependencies {
 
     implementation 'androidx.navigation:navigation-runtime:2.5.0'
 
-    implementation 'com.kunminx.arch:unpeek-livedata:7.6.0'
-    implementation 'com.kunminx.arch:smooth-navigation:4.0.0-beta1'
+    implementation 'com.github.KunMinX:UnPeek-LiveData:v7.6.0'
+    implementation 'com.github.KunMinX:Smooth-Navigation:v4.0.0'
     implementation project(':strict_databinding')
     implementation project(':binding_recyclerview')
     implementation project(':binding_adapter')
