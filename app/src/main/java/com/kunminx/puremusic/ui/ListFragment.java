@@ -21,6 +21,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.ObservableArrayList;
 import androidx.lifecycle.ViewModel;
 
 import com.kunminx.architecture.ui.page.DataBindingConfig;
@@ -65,12 +66,11 @@ public class ListFragment extends BaseFragment {
     super.onViewCreated(view, savedInstanceState);
 
     mMomentRequest.getListResult().observe(getViewLifecycleOwner(), moments -> {
-      mState.list.set(moments);
+      mState.list.addAll(moments);
     });
 
     mMessenger.getMomentResult().observe(getViewLifecycleOwner(), moment -> {
-      mState.list.get().add(0, moment);
-      mState.list.set(mState.list.get());
+      mState.list.add(0, moment);
     });
 
     mMomentRequest.requestList();
@@ -83,7 +83,7 @@ public class ListFragment extends BaseFragment {
   }
 
   public static class ListViewModel extends ViewModel {
-    public final State<List<Moment>> list = new State<>(new ArrayList<>());
+    public final ObservableArrayList<Moment> list = new ObservableArrayList<>();
     public final State<Boolean> autoScrollToTopWhenInsert = new State<>(true);
   }
 }

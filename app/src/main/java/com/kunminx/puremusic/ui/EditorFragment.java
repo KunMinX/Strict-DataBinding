@@ -71,7 +71,7 @@ public class EditorFragment extends BaseFragment {
                 mState.location.get(),
                 null,
                 "KunMinX",
-                null
+                "https://tva1.sinaimg.cn/large/e6c9d24ely1h4exa8m7quj20ju0juaax.jpg"
         );
         mMessenger.requestMoment(moment);
         nav().navigateUp();
@@ -82,6 +82,6 @@ public class EditorFragment extends BaseFragment {
 
   public static class EditorViewModel extends ViewModel {
     public final State<String> content = new State<>("");
-    public final State<String> location = new State<>("添加定位");
+    public final State<String> location = new State<>("台北夜市一条街");
   }
 }
