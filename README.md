@@ -4,13 +4,13 @@
 
 ## DataBinding 严格模式
 
-正如[《Jetpack MVVM 精讲》](https://juejin.im/post/6844903976240939021)所述，DataBinding 本质是 **解决 View 实例 Null 安全一致性问题**。也即在 Java 项目中，我们通过 DataBinding **“可观察数据” 间接通知视图刷新，以规避 View 实例 Null 安全隐患**。
+如[《Jetpack MVVM 精讲》](https://juejin.im/post/6844903976240939021)所述，DataBinding 本质是 **解决 View 实例 Null 安全一致性问题**。
 
-然与函数式编程思想 "声明式 UI" 框架 Jetpack Compose 区别在于，DataBinding 并非通过 “纯函数” 方式隔绝手写代码对 “View 实例” 接触，而是通过 “自动化代码生成” 方式为 View 实例做 ”判空处理“，
+然与函数式编程思想 "声明式 UI" 框架 Jetpack Compose 区别在于，DataBinding 并非通过 “纯函数” 方式隔绝手写代码对 “View 实例” 接触，而是 “自动化代码生成” 方式为 View 实例做 ”判空处理“，
 
 > 这也就带来一问题 —— 开发者可在代码中通过 mBinding 实例调用 View 实例 —— 如此等于舍本逐末、前功尽弃。
 
-因而基于对 “**解决 View 实例 Null 安全一致性问题**” 独家理解，“DataBinding 严格模式” 应运而生，通过它，可使 View 实例 Null 安全一致性问题 **被彻底解决**，安全性与 Jetpack Compose 持平。
+故基于该理解，“DataBinding 严格模式” 应运而生，通过屏蔽 mBinding 使 View 实例 Null 安全一致性问题 **被彻底解决**，安全性与 Jetpack Compose 持平。
 
 ```java
 public class EditorFragment extends BaseFragment {
@@ -23,9 +23,8 @@ public class EditorFragment extends BaseFragment {
   }
   
   @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
-
+  public void onViewCreated(View view, Bundle savedInstanceState) {
+    ...
     mMomentRequest.getResult().observe(getViewLifecycleOwner(), result -> {
       mState.showEditorBar.set(result.editBarVisible);
     });
@@ -82,8 +81,6 @@ https://wj.qq.com/s2/8362688/124a/
 &nbsp;
 
 ## 版权声明
-
-本文以 [CC 署名-非商业性使用-禁止演绎 4.0 国际协议](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh) 发行。
 
 Copyright © 2019-present KunMinX
 
