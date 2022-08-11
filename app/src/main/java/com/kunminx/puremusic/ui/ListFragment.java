@@ -39,13 +39,13 @@ import com.kunminx.puremusic.ui.base.BaseFragment;
  */
 public class ListFragment extends BaseFragment {
 
-  private ListViewModel mState;
+  private ListStates mState;
   private PageMessenger mMessenger;
   private MomentRequest mMomentRequest;
 
   @Override
   protected void initViewModel() {
-    mState = getFragmentScopeViewModel(ListViewModel.class);
+    mState = getFragmentScopeViewModel(ListStates.class);
     mMessenger = getActivityScopeViewModel(PageMessenger.class);
     mMomentRequest = getFragmentScopeViewModel(MomentRequest.class);
   }
@@ -79,7 +79,7 @@ public class ListFragment extends BaseFragment {
     }
   }
 
-  public static class ListViewModel extends ViewModel {
+  public static class ListStates extends ViewModel {
     public final ObservableArrayList<Moment> list = new ObservableArrayList<>();
     public final State<Boolean> autoScrollToTopWhenInsert = new State<>(true);
   }

@@ -12,7 +12,30 @@
 
 因而基于对 “**解决 View 实例 Null 安全一致性问题**” 独家理解，“DataBinding 严格模式” 应运而生，通过它，可使 View 实例 Null 安全一致性问题 **被彻底解决**，安全性与 Jetpack Compose 持平。
 
-根据小伙伴反馈，他们已将该模式用于实际生产环境。
+```java
+public class EditorFragment extends BaseFragment {
+  private EditorStates mState;
+
+  @Override
+  protected DataBindingConfig getDataBindingConfig() {
+    return new DataBindingConfig(R.layout.fragment_editor, BR.vm, mState)
+            .addBindingParam(BR.click, new ClickProxy());
+  }
+  
+  @Override
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+
+    mMomentRequest.getResult().observe(getViewLifecycleOwner(), result -> {
+      mState.showEditorBar.set(result.editBarVisible);
+    });
+  }
+
+  public static class EditorStates extends ViewModel {
+    public final State<Boolean> showEditorBar = new State<>(true);
+  }
+}
+```
 
 &nbsp;
 

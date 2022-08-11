@@ -36,12 +36,12 @@ import java.util.UUID;
  */
 public class EditorFragment extends BaseFragment {
 
-  private EditorViewModel mState;
+  private EditorStates mState;
   private PageMessenger mMessenger;
 
   @Override
   protected void initViewModel() {
-    mState = getFragmentScopeViewModel(EditorViewModel.class);
+    mState = getFragmentScopeViewModel(EditorStates.class);
     mMessenger = getActivityScopeViewModel(PageMessenger.class);
   }
 
@@ -80,7 +80,7 @@ public class EditorFragment extends BaseFragment {
     }
   }
 
-  public static class EditorViewModel extends ViewModel {
+  public static class EditorStates extends ViewModel {
     public final State<String> content = new State<>("");
     public final State<String> location = new State<>("台北夜市一条街");
   }
