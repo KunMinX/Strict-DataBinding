@@ -24,12 +24,12 @@
 
 ```groovy
 //核心：DataBinding 严格模式基础框架
-implementation 'com.kunminx.arch:strict-databinding:5.1.0-beta1'
+implementation 'com.kunminx.arch:strict-databinding:5.3.0'
 
-//可选：常用 BindingAdapter 接口整理
-implementation 'com.kunminx.arch:binding-adapter:3.4.0-beta1'
+//可选：去防抖 State
+implementation 'com.kunminx.arch:binding-state:5.3.0'
 //可选：常用 RecyclerView Binding 接口整理
-implementation 'com.kunminx.arch:binding-recyclerview:3.9.0-beta1'
+implementation 'com.kunminx.arch:binding-recyclerview:5.3.0'
 ```
 
 > **温馨提示：**

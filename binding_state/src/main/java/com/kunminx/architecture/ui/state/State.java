@@ -1,4 +1,4 @@
-package com.kunminx.architecture.ui.page;
+package com.kunminx.architecture.ui.state;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
