@@ -45,12 +45,12 @@ public class EditorFragment extends BaseFragment {
 
 ```groovy
 //核心：DataBinding 严格模式基础框架
-implementation 'com.kunminx.arch:strict-databinding:6.0.0'
+implementation 'com.kunminx.arch:strict-databinding:6.2.0'
 
 //可选：去防抖 State
-implementation 'com.kunminx.arch:binding-state:6.0.0'
+implementation 'com.kunminx.arch:binding-state:6.2.0'
 //可选：常用 RecyclerView Binding 接口整理
-implementation 'com.kunminx.arch:binding-recyclerview:6.0.0'
+implementation 'com.kunminx.arch:binding-recyclerview:6.2.0'
 ```
 
 &nbsp;

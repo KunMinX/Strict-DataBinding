@@ -35,7 +35,7 @@ public class State<T> extends ObservableField<T> {
     boolean isUnChanged = get() == value;
     super.set(value);
     if (!mIsDebouncing && isUnChanged) notifyChange();
-    if (!isUnChanged && callback != null) callback.onDiff(value);
+    if (!isUnChanged && callback != null) callback.onValueChanged(value);
   }
 
   @Override
@@ -44,6 +44,6 @@ public class State<T> extends ObservableField<T> {
   }
 
   public interface DiffCallback<T> {
-    void onDiff(T value);
+    void onValueChanged(T value);
   }
 }
