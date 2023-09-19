@@ -25,12 +25,21 @@ public class State<T> extends ObservableField<T> {
     mIsDebouncing = isDebouncing;
   }
 
-  @Override
-  public void set(@NonNull T value) {
+  public void set(@NonNull T value, DiffCallback<T> callback) {
     boolean isUnChanged = get() == value;
     super.set(value);
     if (!mIsDebouncing && isUnChanged) {
       notifyChange();
+      if (callback != null) callback.onDiff(value);
     }
+  }
+
+  @Override
+  public void set(@NonNull T value) {
+    set(value, null);
+  }
+
+  public interface DiffCallback<T> {
+    void onDiff(T value);
   }
 }
