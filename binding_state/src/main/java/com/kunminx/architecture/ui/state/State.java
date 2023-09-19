@@ -25,6 +25,12 @@ public class State<T> extends ObservableField<T> {
     mIsDebouncing = isDebouncing;
   }
 
+  /**
+   * 如果 isDebouncing = true 开启防抖，那么只在值变化时通知刷新。默认总是通知刷新
+   * 如果注册 DiffCallback，在值变化时可做一些操作
+   * @param value set value
+   * @param callback diff callback
+   */
   public void set(@NonNull T value, DiffCallback<T> callback) {
     boolean isUnChanged = get() == value;
     super.set(value);
