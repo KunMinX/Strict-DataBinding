@@ -28,10 +28,8 @@ public class State<T> extends ObservableField<T> {
   public void set(@NonNull T value, DiffCallback<T> callback) {
     boolean isUnChanged = get() == value;
     super.set(value);
-    if (!mIsDebouncing && isUnChanged) {
-      notifyChange();
-      if (callback != null) callback.onDiff(value);
-    }
+    if (!mIsDebouncing && isUnChanged) notifyChange();
+    if (!isUnChanged && callback != null) callback.onDiff(value);
   }
 
   @Override
